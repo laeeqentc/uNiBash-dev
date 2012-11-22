@@ -1,0 +1,1618 @@
+GAS LISTING /tmp/ccXEG59c.s 			page 1
+
+
+   1               		.file	"sample_1.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.text
+  11               	.global	Serial_Init
+  12               		.type	Serial_Init, @function
+  13               	Serial_Init:
+  14               	/* prologue: function */
+  15               	/* frame size = 0 */
+  16 0000 1092 9800 		sts 152,__zero_reg__
+  17 0004 87E6      		ldi r24,lo8(103)
+  18 0006 8093 9900 		sts 153,r24
+  19 000a 88E1      		ldi r24,lo8(24)
+  20 000c 8093 9A00 		sts 154,r24
+  21 0010 8EE0      		ldi r24,lo8(14)
+  22 0012 8093 9D00 		sts 157,r24
+  23               	/* epilogue start */
+  24 0016 0895      		ret
+  25               		.size	Serial_Init, .-Serial_Init
+  26               	.global	USART_Init
+  27               		.type	USART_Init, @function
+  28               	USART_Init:
+  29               	/* prologue: function */
+  30               	/* frame size = 0 */
+  31 0018 9093 9800 		sts 152,r25
+  32 001c 8093 9900 		sts 153,r24
+  33 0020 88E1      		ldi r24,lo8(24)
+  34 0022 8093 9A00 		sts 154,r24
+  35 0026 8EE0      		ldi r24,lo8(14)
+  36 0028 8093 9D00 		sts 157,r24
+  37               	/* epilogue start */
+  38 002c 0895      		ret
+  39               		.size	USART_Init, .-USART_Init
+  40               	.global	USART_Receive
+  41               		.type	USART_Receive, @function
+  42               	USART_Receive:
+  43               	/* prologue: function */
+  44               	/* frame size = 0 */
+  45               	.L6:
+  46 002e 8091 9B00 		lds r24,155
+  47 0032 87FF      		sbrs r24,7
+  48 0034 00C0      		rjmp .L6
+  49 0036 8091 9C00 		lds r24,156
+  50               	/* epilogue start */
+  51 003a 0895      		ret
+  52               		.size	USART_Receive, .-USART_Receive
+  53               	.global	USART_Transmit
+  54               		.type	USART_Transmit, @function
+  55               	USART_Transmit:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+GAS LISTING /tmp/ccXEG59c.s 			page 2
+
+
+  58 003c 982F      		mov r25,r24
+  59               	.L11:
+  60 003e 8091 9B00 		lds r24,155
+  61 0042 85FF      		sbrs r24,5
+  62 0044 00C0      		rjmp .L11
+  63 0046 9093 9C00 		sts 156,r25
+  64               	/* epilogue start */
+  65 004a 0895      		ret
+  66               		.size	USART_Transmit, .-USART_Transmit
+  67               	.global	print_string
+  68               		.type	print_string, @function
+  69               	print_string:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72 004c FC01      		movw r30,r24
+  73 004e 9081      		ld r25,Z
+  74 0050 9923      		tst r25
+  75 0052 01F0      		breq .L18
+  76               	.L19:
+  77 0054 3196      		adiw r30,1
+  78               	.L16:
+  79 0056 8091 9B00 		lds r24,155
+  80 005a 85FF      		sbrs r24,5
+  81 005c 00C0      		rjmp .L16
+  82 005e 9093 9C00 		sts 156,r25
+  83 0062 9081      		ld r25,Z
+  84 0064 9923      		tst r25
+  85 0066 01F4      		brne .L19
+  86               	.L18:
+  87 0068 0895      		ret
+  88               		.size	print_string, .-print_string
+  89               	.global	UART_Receive_string
+  90               		.type	UART_Receive_string, @function
+  91               	UART_Receive_string:
+  92 006a DF93      		push r29
+  93 006c CF93      		push r28
+  94 006e CDB7      		in r28,__SP_L__
+  95 0070 DEB7      		in r29,__SP_H__
+  96 0072 C456      		subi r28,lo8(-(-100))
+  97 0074 D040      		sbci r29,hi8(-(-100))
+  98 0076 0FB6      		in __tmp_reg__,__SREG__
+  99 0078 F894      		cli
+ 100 007a DEBF      		out __SP_H__,r29
+ 101 007c 0FBE      		out __SREG__,__tmp_reg__
+ 102 007e CDBF      		out __SP_L__,r28
+ 103               	/* prologue: function */
+ 104               	/* frame size = 100 */
+ 105 0080 44EC      		ldi r20,lo8(2500)
+ 106 0082 59E0      		ldi r21,hi8(2500)
+ 107               	.L30:
+ 108 0084 8091 9B00 		lds r24,155
+ 109 0088 87FF      		sbrs r24,7
+ 110 008a 00C0      		rjmp .L30
+ 111 008c 2091 9C00 		lds r18,156
+ 112 0090 2D30      		cpi r18,lo8(13)
+ 113 0092 01F0      		breq .L31
+ 114 0094 CA01      		movw r24,r20
+GAS LISTING /tmp/ccXEG59c.s 			page 3
+
+
+ 115               	/* #APP */
+ 116               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 117 0096 0197      		1: sbiw r24,1
+ 118 0098 01F4      		brne 1b
+ 119               	 ;  0 "" 2
+ 120               	/* #NOAPP */
+ 121               	.L24:
+ 122 009a 8091 9B00 		lds r24,155
+ 123 009e 85FF      		sbrs r24,5
+ 124 00a0 00C0      		rjmp .L24
+ 125 00a2 2093 9C00 		sts 156,r18
+ 126 00a6 00C0      		rjmp .L30
+ 127               	.L31:
+ 128 00a8 CE01      		movw r24,r28
+ 129 00aa 0196      		adiw r24,1
+ 130               	/* epilogue start */
+ 131 00ac CC59      		subi r28,lo8(-(100))
+ 132 00ae DF4F      		sbci r29,hi8(-(100))
+ 133 00b0 0FB6      		in __tmp_reg__,__SREG__
+ 134 00b2 F894      		cli
+ 135 00b4 DEBF      		out __SP_H__,r29
+ 136 00b6 0FBE      		out __SREG__,__tmp_reg__
+ 137 00b8 CDBF      		out __SP_L__,r28
+ 138 00ba CF91      		pop r28
+ 139 00bc DF91      		pop r29
+ 140 00be 0895      		ret
+ 141               		.size	UART_Receive_string, .-UART_Receive_string
+ 142               	.global	UART_Receive_string_pass
+ 143               		.type	UART_Receive_string_pass, @function
+ 144               	UART_Receive_string_pass:
+ 145 00c0 DF93      		push r29
+ 146 00c2 CF93      		push r28
+ 147 00c4 CDB7      		in r28,__SP_L__
+ 148 00c6 DEB7      		in r29,__SP_H__
+ 149 00c8 C456      		subi r28,lo8(-(-100))
+ 150 00ca D040      		sbci r29,hi8(-(-100))
+ 151 00cc 0FB6      		in __tmp_reg__,__SREG__
+ 152 00ce F894      		cli
+ 153 00d0 DEBF      		out __SP_H__,r29
+ 154 00d2 0FBE      		out __SREG__,__tmp_reg__
+ 155 00d4 CDBF      		out __SP_L__,r28
+ 156               	/* prologue: function */
+ 157               	/* frame size = 100 */
+ 158 00d6 24EC      		ldi r18,lo8(2500)
+ 159 00d8 39E0      		ldi r19,hi8(2500)
+ 160 00da 4AE2      		ldi r20,lo8(42)
+ 161               	.L40:
+ 162 00dc 8091 9B00 		lds r24,155
+ 163 00e0 87FF      		sbrs r24,7
+ 164 00e2 00C0      		rjmp .L40
+ 165 00e4 8091 9C00 		lds r24,156
+ 166 00e8 8D30      		cpi r24,lo8(13)
+ 167 00ea 01F0      		breq .L41
+ 168 00ec C901      		movw r24,r18
+ 169               	/* #APP */
+ 170               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 171 00ee 0197      		1: sbiw r24,1
+GAS LISTING /tmp/ccXEG59c.s 			page 4
+
+
+ 172 00f0 01F4      		brne 1b
+ 173               	 ;  0 "" 2
+ 174               	/* #NOAPP */
+ 175               	.L34:
+ 176 00f2 8091 9B00 		lds r24,155
+ 177 00f6 85FF      		sbrs r24,5
+ 178 00f8 00C0      		rjmp .L34
+ 179 00fa 4093 9C00 		sts 156,r20
+ 180 00fe 00C0      		rjmp .L40
+ 181               	.L41:
+ 182 0100 CE01      		movw r24,r28
+ 183 0102 0196      		adiw r24,1
+ 184               	/* epilogue start */
+ 185 0104 CC59      		subi r28,lo8(-(100))
+ 186 0106 DF4F      		sbci r29,hi8(-(100))
+ 187 0108 0FB6      		in __tmp_reg__,__SREG__
+ 188 010a F894      		cli
+ 189 010c DEBF      		out __SP_H__,r29
+ 190 010e 0FBE      		out __SREG__,__tmp_reg__
+ 191 0110 CDBF      		out __SP_L__,r28
+ 192 0112 CF91      		pop r28
+ 193 0114 DF91      		pop r29
+ 194 0116 0895      		ret
+ 195               		.size	UART_Receive_string_pass, .-UART_Receive_string_pass
+ 196               	.global	UART_Transmit_num
+ 197               		.type	UART_Transmit_num, @function
+ 198               	UART_Transmit_num:
+ 199 0118 0F93      		push r16
+ 200 011a 1F93      		push r17
+ 201 011c DF93      		push r29
+ 202 011e CF93      		push r28
+ 203 0120 00D0      		rcall .
+ 204 0122 0F92      		push __tmp_reg__
+ 205 0124 CDB7      		in r28,__SP_L__
+ 206 0126 DEB7      		in r29,__SP_H__
+ 207               	/* prologue: function */
+ 208               	/* frame size = 3 */
+ 209 0128 9C01      		movw r18,r24
+ 210 012a 1982      		std Y+1,__zero_reg__
+ 211 012c 1A82      		std Y+2,__zero_reg__
+ 212 012e 1B82      		std Y+3,__zero_reg__
+ 213 0130 0097      		sbiw r24,0
+ 214 0132 01F0      		breq .L53
+ 215 0134 42E0      		ldi r20,lo8(2)
+ 216 0136 8E01      		movw r16,r28
+ 217 0138 0F5F      		subi r16,lo8(-(1))
+ 218 013a 1F4F      		sbci r17,hi8(-(1))
+ 219               	.L44:
+ 220 013c F801      		movw r30,r16
+ 221 013e E40F      		add r30,r20
+ 222 0140 F11D      		adc r31,__zero_reg__
+ 223 0142 C901      		movw r24,r18
+ 224 0144 6AE0      		ldi r22,lo8(10)
+ 225 0146 70E0      		ldi r23,hi8(10)
+ 226 0148 0E94 0000 		call __udivmodhi4
+ 227 014c 8083      		st Z,r24
+ 228 014e C901      		movw r24,r18
+GAS LISTING /tmp/ccXEG59c.s 			page 5
+
+
+ 229 0150 6AE0      		ldi r22,lo8(10)
+ 230 0152 70E0      		ldi r23,hi8(10)
+ 231 0154 0E94 0000 		call __udivmodhi4
+ 232 0158 9B01      		movw r18,r22
+ 233 015a 4150      		subi r20,lo8(-(-1))
+ 234 015c 6115      		cp r22,__zero_reg__
+ 235 015e 7105      		cpc r23,__zero_reg__
+ 236 0160 01F4      		brne .L44
+ 237               	.L43:
+ 238 0162 F801      		movw r30,r16
+ 239 0164 9E01      		movw r18,r28
+ 240 0166 2C5F      		subi r18,lo8(-(4))
+ 241 0168 3F4F      		sbci r19,hi8(-(4))
+ 242               	.L46:
+ 243 016a 9081      		ld r25,Z
+ 244               	.L45:
+ 245 016c 8091 9B00 		lds r24,155
+ 246 0170 85FF      		sbrs r24,5
+ 247 0172 00C0      		rjmp .L45
+ 248 0174 905D      		subi r25,lo8(-(48))
+ 249 0176 9093 9C00 		sts 156,r25
+ 250 017a 3196      		adiw r30,1
+ 251 017c E217      		cp r30,r18
+ 252 017e F307      		cpc r31,r19
+ 253 0180 01F4      		brne .L46
+ 254               	/* epilogue start */
+ 255 0182 0F90      		pop __tmp_reg__
+ 256 0184 0F90      		pop __tmp_reg__
+ 257 0186 0F90      		pop __tmp_reg__
+ 258 0188 CF91      		pop r28
+ 259 018a DF91      		pop r29
+ 260 018c 1F91      		pop r17
+ 261 018e 0F91      		pop r16
+ 262 0190 0895      		ret
+ 263               	.L53:
+ 264 0192 8E01      		movw r16,r28
+ 265 0194 0F5F      		subi r16,lo8(-(1))
+ 266 0196 1F4F      		sbci r17,hi8(-(1))
+ 267 0198 00C0      		rjmp .L43
+ 268               		.size	UART_Transmit_num, .-UART_Transmit_num
+ 269               	.global	year
+ 270               		.type	year, @function
+ 271               	year:
+ 272               	/* prologue: function */
+ 273               	/* frame size = 0 */
+ 274               	/* epilogue start */
+ 275 019a 0895      		ret
+ 276               		.size	year, .-year
+ 277               	.global	month
+ 278               		.type	month, @function
+ 279               	month:
+ 280               	/* prologue: function */
+ 281               	/* frame size = 0 */
+ 282               	/* epilogue start */
+ 283 019c 0895      		ret
+ 284               		.size	month, .-month
+ 285               	.global	day
+GAS LISTING /tmp/ccXEG59c.s 			page 6
+
+
+ 286               		.type	day, @function
+ 287               	day:
+ 288               	/* prologue: function */
+ 289               	/* frame size = 0 */
+ 290               	/* epilogue start */
+ 291 019e 0895      		ret
+ 292               		.size	day, .-day
+ 293               	.global	hour
+ 294               		.type	hour, @function
+ 295               	hour:
+ 296               	/* prologue: function */
+ 297               	/* frame size = 0 */
+ 298               	/* epilogue start */
+ 299 01a0 0895      		ret
+ 300               		.size	hour, .-hour
+ 301               	.global	min
+ 302               		.type	min, @function
+ 303               	min:
+ 304               	/* prologue: function */
+ 305               	/* frame size = 0 */
+ 306               	/* epilogue start */
+ 307 01a2 0895      		ret
+ 308               		.size	min, .-min
+ 309               	.global	sec
+ 310               		.type	sec, @function
+ 311               	sec:
+ 312               	/* prologue: function */
+ 313               	/* frame size = 0 */
+ 314               	/* epilogue start */
+ 315 01a4 0895      		ret
+ 316               		.size	sec, .-sec
+ 317               	.global	RTC_Init
+ 318               		.type	RTC_Init, @function
+ 319               	RTC_Init:
+ 320               	/* prologue: function */
+ 321               	/* frame size = 0 */
+ 322 01a6 88E4      		ldi r24,lo8(72)
+ 323 01a8 8093 7000 		sts 112,r24
+ 324               	/* epilogue start */
+ 325 01ac 0895      		ret
+ 326               		.size	RTC_Init, .-RTC_Init
+ 327               	.global	Write_RTC
+ 328               		.type	Write_RTC, @function
+ 329               	Write_RTC:
+ 330               	/* prologue: function */
+ 331               	/* frame size = 0 */
+ 332 01ae 84EA      		ldi r24,lo8(-92)
+ 333 01b0 8093 7400 		sts 116,r24
+ 334               	.L69:
+ 335 01b4 8091 7400 		lds r24,116
+ 336 01b8 87FF      		sbrs r24,7
+ 337 01ba 00C0      		rjmp .L69
+ 338 01bc 80ED      		ldi r24,lo8(-48)
+ 339 01be 8093 7300 		sts 115,r24
+ 340 01c2 84E8      		ldi r24,lo8(-124)
+ 341 01c4 8093 7400 		sts 116,r24
+ 342               	.L70:
+GAS LISTING /tmp/ccXEG59c.s 			page 7
+
+
+ 343 01c8 8091 7400 		lds r24,116
+ 344 01cc 87FF      		sbrs r24,7
+ 345 01ce 00C0      		rjmp .L70
+ 346 01d0 1092 7300 		sts 115,__zero_reg__
+ 347 01d4 84E8      		ldi r24,lo8(-124)
+ 348 01d6 8093 7400 		sts 116,r24
+ 349               	.L71:
+ 350 01da 8091 7400 		lds r24,116
+ 351 01de 87FF      		sbrs r24,7
+ 352 01e0 00C0      		rjmp .L71
+ 353 01e2 81E4      		ldi r24,lo8(65)
+ 354 01e4 8093 7300 		sts 115,r24
+ 355 01e8 84E8      		ldi r24,lo8(-124)
+ 356 01ea 8093 7400 		sts 116,r24
+ 357               	.L72:
+ 358 01ee 8091 7400 		lds r24,116
+ 359 01f2 87FF      		sbrs r24,7
+ 360 01f4 00C0      		rjmp .L72
+ 361 01f6 89E5      		ldi r24,lo8(89)
+ 362 01f8 8093 7300 		sts 115,r24
+ 363 01fc 84E8      		ldi r24,lo8(-124)
+ 364 01fe 8093 7400 		sts 116,r24
+ 365               	.L73:
+ 366 0202 8091 7400 		lds r24,116
+ 367 0206 87FF      		sbrs r24,7
+ 368 0208 00C0      		rjmp .L73
+ 369 020a 81E1      		ldi r24,lo8(17)
+ 370 020c 8093 7300 		sts 115,r24
+ 371 0210 84E8      		ldi r24,lo8(-124)
+ 372 0212 8093 7400 		sts 116,r24
+ 373               	.L74:
+ 374 0216 8091 7400 		lds r24,116
+ 375 021a 87FF      		sbrs r24,7
+ 376 021c 00C0      		rjmp .L74
+ 377 021e 81E0      		ldi r24,lo8(1)
+ 378 0220 8093 7300 		sts 115,r24
+ 379 0224 84E8      		ldi r24,lo8(-124)
+ 380 0226 8093 7400 		sts 116,r24
+ 381               	.L75:
+ 382 022a 8091 7400 		lds r24,116
+ 383 022e 87FF      		sbrs r24,7
+ 384 0230 00C0      		rjmp .L75
+ 385 0232 80E1      		ldi r24,lo8(16)
+ 386 0234 8093 7300 		sts 115,r24
+ 387 0238 84E8      		ldi r24,lo8(-124)
+ 388 023a 8093 7400 		sts 116,r24
+ 389               	.L76:
+ 390 023e 8091 7400 		lds r24,116
+ 391 0242 87FF      		sbrs r24,7
+ 392 0244 00C0      		rjmp .L76
+ 393 0246 81E0      		ldi r24,lo8(1)
+ 394 0248 8093 7300 		sts 115,r24
+ 395 024c 84E8      		ldi r24,lo8(-124)
+ 396 024e 8093 7400 		sts 116,r24
+ 397               	.L77:
+ 398 0252 8091 7400 		lds r24,116
+ 399 0256 87FF      		sbrs r24,7
+GAS LISTING /tmp/ccXEG59c.s 			page 8
+
+
+ 400 0258 00C0      		rjmp .L77
+ 401 025a 89E0      		ldi r24,lo8(9)
+ 402 025c 8093 7300 		sts 115,r24
+ 403 0260 84E8      		ldi r24,lo8(-124)
+ 404 0262 8093 7400 		sts 116,r24
+ 405               	.L78:
+ 406 0266 8091 7400 		lds r24,116
+ 407 026a 87FF      		sbrs r24,7
+ 408 026c 00C0      		rjmp .L78
+ 409 026e 84E9      		ldi r24,lo8(-108)
+ 410 0270 8093 7400 		sts 116,r24
+ 411               	/* epilogue start */
+ 412 0274 0895      		ret
+ 413               		.size	Write_RTC, .-Write_RTC
+ 414               	.global	Initialize_RTC
+ 415               		.type	Initialize_RTC, @function
+ 416               	Initialize_RTC:
+ 417               	/* prologue: function */
+ 418               	/* frame size = 0 */
+ 419 0276 88E4      		ldi r24,lo8(72)
+ 420 0278 8093 7000 		sts 112,r24
+ 421 027c 0E94 0000 		call Write_RTC
+ 422               	/* epilogue start */
+ 423 0280 0895      		ret
+ 424               		.size	Initialize_RTC, .-Initialize_RTC
+ 425               	.global	Update_RTC_variables
+ 426               		.type	Update_RTC_variables, @function
+ 427               	Update_RTC_variables:
+ 428               	/* prologue: function */
+ 429               	/* frame size = 0 */
+ 430 0282 84EA      		ldi r24,lo8(-92)
+ 431 0284 8093 7400 		sts 116,r24
+ 432               	.L93:
+ 433 0288 8091 7400 		lds r24,116
+ 434 028c 87FF      		sbrs r24,7
+ 435 028e 00C0      		rjmp .L93
+ 436 0290 80ED      		ldi r24,lo8(-48)
+ 437 0292 8093 7300 		sts 115,r24
+ 438 0296 84E8      		ldi r24,lo8(-124)
+ 439 0298 8093 7400 		sts 116,r24
+ 440               	.L94:
+ 441 029c 8091 7400 		lds r24,116
+ 442 02a0 87FF      		sbrs r24,7
+ 443 02a2 00C0      		rjmp .L94
+ 444 02a4 1092 7300 		sts 115,__zero_reg__
+ 445 02a8 84E8      		ldi r24,lo8(-124)
+ 446 02aa 8093 7400 		sts 116,r24
+ 447               	.L95:
+ 448 02ae 8091 7400 		lds r24,116
+ 449 02b2 87FF      		sbrs r24,7
+ 450 02b4 00C0      		rjmp .L95
+ 451 02b6 84EA      		ldi r24,lo8(-92)
+ 452 02b8 8093 7400 		sts 116,r24
+ 453               	.L96:
+ 454 02bc 8091 7400 		lds r24,116
+ 455 02c0 87FF      		sbrs r24,7
+ 456 02c2 00C0      		rjmp .L96
+GAS LISTING /tmp/ccXEG59c.s 			page 9
+
+
+ 457 02c4 81ED      		ldi r24,lo8(-47)
+ 458 02c6 8093 7300 		sts 115,r24
+ 459 02ca 84E8      		ldi r24,lo8(-124)
+ 460 02cc 8093 7400 		sts 116,r24
+ 461               	.L97:
+ 462 02d0 8091 7400 		lds r24,116
+ 463 02d4 87FF      		sbrs r24,7
+ 464 02d6 00C0      		rjmp .L97
+ 465 02d8 8091 7300 		lds r24,115
+ 466 02dc 8093 0000 		sts READDATA,r24
+ 467 02e0 84EC      		ldi r24,lo8(-60)
+ 468 02e2 8093 7400 		sts 116,r24
+ 469               	.L98:
+ 470 02e6 8091 7400 		lds r24,116
+ 471 02ea 87FF      		sbrs r24,7
+ 472 02ec 00C0      		rjmp .L98
+ 473 02ee E0E0      		ldi r30,lo8(READDATA)
+ 474 02f0 F0E0      		ldi r31,hi8(READDATA)
+ 475 02f2 94EC      		ldi r25,lo8(-60)
+ 476               	.L100:
+ 477 02f4 8091 7300 		lds r24,115
+ 478 02f8 8083      		st Z,r24
+ 479 02fa 9093 7400 		sts 116,r25
+ 480               	.L99:
+ 481 02fe 8091 7400 		lds r24,116
+ 482 0302 87FF      		sbrs r24,7
+ 483 0304 00C0      		rjmp .L99
+ 484 0306 3196      		adiw r30,1
+ 485 0308 80E0      		ldi r24,hi8(READDATA+6)
+ 486 030a E030      		cpi r30,lo8(READDATA+6)
+ 487 030c F807      		cpc r31,r24
+ 488 030e 01F4      		brne .L100
+ 489 0310 8091 7300 		lds r24,115
+ 490 0314 8083      		st Z,r24
+ 491 0316 84E8      		ldi r24,lo8(-124)
+ 492 0318 8093 7400 		sts 116,r24
+ 493               	.L101:
+ 494 031c 8091 7400 		lds r24,116
+ 495 0320 87FF      		sbrs r24,7
+ 496 0322 00C0      		rjmp .L101
+ 497 0324 84E9      		ldi r24,lo8(-108)
+ 498 0326 8093 7400 		sts 116,r24
+ 499               	/* epilogue start */
+ 500 032a 0895      		ret
+ 501               		.size	Update_RTC_variables, .-Update_RTC_variables
+ 502               	.global	RTC_getYear
+ 503               		.type	RTC_getYear, @function
+ 504               	RTC_getYear:
+ 505               	/* prologue: function */
+ 506               	/* frame size = 0 */
+ 507 032c 8091 0000 		lds r24,READDATA+6
+ 508 0330 282F      		mov r18,r24
+ 509 0332 2295      		swap r18
+ 510 0334 2F70      		andi r18,0x0f
+ 511 0336 30E0      		ldi r19,lo8(0)
+ 512 0338 A901      		movw r20,r18
+ 513 033a 440F      		lsl r20
+GAS LISTING /tmp/ccXEG59c.s 			page 10
+
+
+ 514 033c 551F      		rol r21
+ 515 033e 440F      		lsl r20
+ 516 0340 551F      		rol r21
+ 517 0342 440F      		lsl r20
+ 518 0344 551F      		rol r21
+ 519 0346 220F      		lsl r18
+ 520 0348 331F      		rol r19
+ 521 034a 420F      		add r20,r18
+ 522 034c 531F      		adc r21,r19
+ 523 034e 8F70      		andi r24,lo8(15)
+ 524 0350 840F      		add r24,r20
+ 525 0352 90E0      		ldi r25,lo8(0)
+ 526               	/* epilogue start */
+ 527 0354 0895      		ret
+ 528               		.size	RTC_getYear, .-RTC_getYear
+ 529               	.global	RTC_getMonth
+ 530               		.type	RTC_getMonth, @function
+ 531               	RTC_getMonth:
+ 532               	/* prologue: function */
+ 533               	/* frame size = 0 */
+ 534 0356 8091 0000 		lds r24,READDATA+5
+ 535 035a 282F      		mov r18,r24
+ 536 035c 2295      		swap r18
+ 537 035e 2F70      		andi r18,0x0f
+ 538 0360 30E0      		ldi r19,lo8(0)
+ 539 0362 A901      		movw r20,r18
+ 540 0364 440F      		lsl r20
+ 541 0366 551F      		rol r21
+ 542 0368 440F      		lsl r20
+ 543 036a 551F      		rol r21
+ 544 036c 440F      		lsl r20
+ 545 036e 551F      		rol r21
+ 546 0370 220F      		lsl r18
+ 547 0372 331F      		rol r19
+ 548 0374 420F      		add r20,r18
+ 549 0376 531F      		adc r21,r19
+ 550 0378 8F70      		andi r24,lo8(15)
+ 551 037a 840F      		add r24,r20
+ 552               	/* epilogue start */
+ 553 037c 0895      		ret
+ 554               		.size	RTC_getMonth, .-RTC_getMonth
+ 555               	.global	RTC_getDay
+ 556               		.type	RTC_getDay, @function
+ 557               	RTC_getDay:
+ 558               	/* prologue: function */
+ 559               	/* frame size = 0 */
+ 560 037e 8091 0000 		lds r24,READDATA+4
+ 561 0382 282F      		mov r18,r24
+ 562 0384 2295      		swap r18
+ 563 0386 2F70      		andi r18,0x0f
+ 564 0388 30E0      		ldi r19,lo8(0)
+ 565 038a A901      		movw r20,r18
+ 566 038c 440F      		lsl r20
+ 567 038e 551F      		rol r21
+ 568 0390 440F      		lsl r20
+ 569 0392 551F      		rol r21
+ 570 0394 440F      		lsl r20
+GAS LISTING /tmp/ccXEG59c.s 			page 11
+
+
+ 571 0396 551F      		rol r21
+ 572 0398 220F      		lsl r18
+ 573 039a 331F      		rol r19
+ 574 039c 420F      		add r20,r18
+ 575 039e 531F      		adc r21,r19
+ 576 03a0 8F70      		andi r24,lo8(15)
+ 577 03a2 840F      		add r24,r20
+ 578               	/* epilogue start */
+ 579 03a4 0895      		ret
+ 580               		.size	RTC_getDay, .-RTC_getDay
+ 581               	.global	RTC_getHour
+ 582               		.type	RTC_getHour, @function
+ 583               	RTC_getHour:
+ 584               	/* prologue: function */
+ 585               	/* frame size = 0 */
+ 586 03a6 8091 0000 		lds r24,READDATA+2
+ 587 03aa 282F      		mov r18,r24
+ 588 03ac 2295      		swap r18
+ 589 03ae 2F70      		andi r18,0x0f
+ 590 03b0 30E0      		ldi r19,lo8(0)
+ 591 03b2 A901      		movw r20,r18
+ 592 03b4 440F      		lsl r20
+ 593 03b6 551F      		rol r21
+ 594 03b8 440F      		lsl r20
+ 595 03ba 551F      		rol r21
+ 596 03bc 440F      		lsl r20
+ 597 03be 551F      		rol r21
+ 598 03c0 220F      		lsl r18
+ 599 03c2 331F      		rol r19
+ 600 03c4 420F      		add r20,r18
+ 601 03c6 531F      		adc r21,r19
+ 602 03c8 8F70      		andi r24,lo8(15)
+ 603 03ca 840F      		add r24,r20
+ 604               	/* epilogue start */
+ 605 03cc 0895      		ret
+ 606               		.size	RTC_getHour, .-RTC_getHour
+ 607               	.global	RTC_getMinute
+ 608               		.type	RTC_getMinute, @function
+ 609               	RTC_getMinute:
+ 610               	/* prologue: function */
+ 611               	/* frame size = 0 */
+ 612 03ce 8091 0000 		lds r24,READDATA+1
+ 613 03d2 282F      		mov r18,r24
+ 614 03d4 2295      		swap r18
+ 615 03d6 2F70      		andi r18,0x0f
+ 616 03d8 30E0      		ldi r19,lo8(0)
+ 617 03da A901      		movw r20,r18
+ 618 03dc 440F      		lsl r20
+ 619 03de 551F      		rol r21
+ 620 03e0 440F      		lsl r20
+ 621 03e2 551F      		rol r21
+ 622 03e4 440F      		lsl r20
+ 623 03e6 551F      		rol r21
+ 624 03e8 220F      		lsl r18
+ 625 03ea 331F      		rol r19
+ 626 03ec 420F      		add r20,r18
+ 627 03ee 531F      		adc r21,r19
+GAS LISTING /tmp/ccXEG59c.s 			page 12
+
+
+ 628 03f0 8F70      		andi r24,lo8(15)
+ 629 03f2 840F      		add r24,r20
+ 630               	/* epilogue start */
+ 631 03f4 0895      		ret
+ 632               		.size	RTC_getMinute, .-RTC_getMinute
+ 633               	.global	RTC_getSecond
+ 634               		.type	RTC_getSecond, @function
+ 635               	RTC_getSecond:
+ 636               	/* prologue: function */
+ 637               	/* frame size = 0 */
+ 638 03f6 8091 0000 		lds r24,READDATA
+ 639 03fa 282F      		mov r18,r24
+ 640 03fc 2295      		swap r18
+ 641 03fe 2F70      		andi r18,0x0f
+ 642 0400 30E0      		ldi r19,lo8(0)
+ 643 0402 A901      		movw r20,r18
+ 644 0404 440F      		lsl r20
+ 645 0406 551F      		rol r21
+ 646 0408 440F      		lsl r20
+ 647 040a 551F      		rol r21
+ 648 040c 440F      		lsl r20
+ 649 040e 551F      		rol r21
+ 650 0410 220F      		lsl r18
+ 651 0412 331F      		rol r19
+ 652 0414 420F      		add r20,r18
+ 653 0416 531F      		adc r21,r19
+ 654 0418 8F70      		andi r24,lo8(15)
+ 655 041a 840F      		add r24,r20
+ 656               	/* epilogue start */
+ 657 041c 0895      		ret
+ 658               		.size	RTC_getSecond, .-RTC_getSecond
+ 659               	.global	conv_same_dec
+ 660               		.type	conv_same_dec, @function
+ 661               	conv_same_dec:
+ 662               	/* prologue: function */
+ 663               	/* frame size = 0 */
+ 664 041e 282F      		mov r18,r24
+ 665 0420 2295      		swap r18
+ 666 0422 2F70      		andi r18,0x0f
+ 667 0424 30E0      		ldi r19,lo8(0)
+ 668 0426 A901      		movw r20,r18
+ 669 0428 440F      		lsl r20
+ 670 042a 551F      		rol r21
+ 671 042c 440F      		lsl r20
+ 672 042e 551F      		rol r21
+ 673 0430 440F      		lsl r20
+ 674 0432 551F      		rol r21
+ 675 0434 220F      		lsl r18
+ 676 0436 331F      		rol r19
+ 677 0438 420F      		add r20,r18
+ 678 043a 531F      		adc r21,r19
+ 679 043c 8F70      		andi r24,lo8(15)
+ 680 043e 840F      		add r24,r20
+ 681               	/* epilogue start */
+ 682 0440 0895      		ret
+ 683               		.size	conv_same_dec, .-conv_same_dec
+ 684               		.data
+GAS LISTING /tmp/ccXEG59c.s 			page 13
+
+
+ 685               	.LC0:
+ 686 0000 0D74 6173 		.string	"\rtask 2 "
+ 686      6B20 3220 
+ 686      00
+ 687               		.text
+ 688               	.global	Task2
+ 689               		.type	Task2, @function
+ 690               	Task2:
+ 691 0442 00C0      		rjmp .L133
+ 692               	.L134:
+ 693 0444 80E0      		ldi r24,lo8(0)
+ 694 0446 60E0      		ldi r22,lo8(0)
+ 695 0448 41E0      		ldi r20,lo8(1)
+ 696 044a 20E0      		ldi r18,lo8(0)
+ 697 044c 30E0      		ldi r19,hi8(0)
+ 698 044e 0E94 0000 		call OSTimeDlyHMSM
+ 699               	.L133:
+ 700 0452 E0E0      		ldi r30,lo8(.LC0)
+ 701 0454 F0E0      		ldi r31,hi8(.LC0)
+ 702               	.L132:
+ 703 0456 9081      		ld r25,Z
+ 704 0458 9923      		tst r25
+ 705 045a 01F0      		breq .L134
+ 706               	/* prologue: function */
+ 707               	/* frame size = 0 */
+ 708               	.L130:
+ 709 045c 8091 9B00 		lds r24,155
+ 710 0460 85FF      		sbrs r24,5
+ 711 0462 00C0      		rjmp .L130
+ 712 0464 3196      		adiw r30,1
+ 713 0466 9093 9C00 		sts 156,r25
+ 714 046a 00C0      		rjmp .L132
+ 715               		.size	Task2, .-Task2
+ 716               		.data
+ 717               	.LC1:
+ 718 0009 0D74 6173 		.string	"\rtask 1 "
+ 718      6B20 3120 
+ 718      00
+ 719               	.LC2:
+ 720 0012 0D6C 6165 		.string	"\rlaeeq@uNiBash:~$"
+ 720      6571 4075 
+ 720      4E69 4261 
+ 720      7368 3A7E 
+ 720      2400 
+ 721               	.LC3:
+ 722 0024 7469 6D65 		.string	"time"
+ 722      00
+ 723               	.LC4:
+ 724 0029 5449 4D45 		.string	"TIME"
+ 724      00
+ 725               	.LC5:
+ 726 002e 0D00      		.string	"\r"
+ 727               	.LC6:
+ 728 0030 4852 5320 		.string	"HRS = %d MIN = %02d SEC = %03d"
+ 728      3D20 2564 
+ 728      204D 494E 
+ 728      203D 2025 
+GAS LISTING /tmp/ccXEG59c.s 			page 14
+
+
+ 728      3032 6420 
+ 729               	.LC7:
+ 730 004f 7768 6F00 		.string	"who"
+ 731               	.LC8:
+ 732 0053 7768 6F61 		.string	"whoami"
+ 732      6D69 00
+ 733               	.LC9:
+ 734 005a 5748 4F41 		.string	"WHOAMI"
+ 734      4D49 00
+ 735               	.LC10:
+ 736 0061 0D6C 6165 		.string	"\rlaeeq \t tty1 \t time \rlaeeq \t ps1 \t time "
+ 736      6571 2009 
+ 736      2074 7479 
+ 736      3120 0920 
+ 736      7469 6D65 
+ 737               	.LC11:
+ 738 008b 7374 6174 		.string	"stat"
+ 738      00
+ 739               	.LC12:
+ 740 0090 5354 4154 		.string	"STAT"
+ 740      00
+ 741               	.LC13:
+ 742 0095 0D43 5055 		.string	"\rCPU:"
+ 742      3A00 
+ 743               	.LC14:
+ 744 009b 2500      		.string	"%"
+ 745               		.text
+ 746               	.global	Task1
+ 747               		.type	Task1, @function
+ 748               	Task1:
+ 749 046c 4F92      		push r4
+ 750 046e 5F92      		push r5
+ 751 0470 6F92      		push r6
+ 752 0472 7F92      		push r7
+ 753 0474 8F92      		push r8
+ 754 0476 9F92      		push r9
+ 755 0478 AF92      		push r10
+ 756 047a BF92      		push r11
+ 757 047c CF92      		push r12
+ 758 047e DF92      		push r13
+ 759 0480 EF92      		push r14
+ 760 0482 FF92      		push r15
+ 761 0484 0F93      		push r16
+ 762 0486 1F93      		push r17
+ 763 0488 DF93      		push r29
+ 764 048a CF93      		push r28
+ 765 048c CDB7      		in r28,__SP_L__
+ 766 048e DEB7      		in r29,__SP_H__
+ 767 0490 CD57      		subi r28,lo8(-(-125))
+ 768 0492 D040      		sbci r29,hi8(-(-125))
+ 769 0494 0FB6      		in __tmp_reg__,__SREG__
+ 770 0496 F894      		cli
+ 771 0498 DEBF      		out __SP_H__,r29
+ 772 049a 0FBE      		out __SREG__,__tmp_reg__
+ 773 049c CDBF      		out __SP_L__,r28
+ 774               	/* prologue: function */
+ 775               	/* frame size = 125 */
+GAS LISTING /tmp/ccXEG59c.s 			page 15
+
+
+ 776 049e E0E0      		ldi r30,lo8(.LC1)
+ 777 04a0 F0E0      		ldi r31,hi8(.LC1)
+ 778 04a2 9DE0      		ldi r25,lo8(13)
+ 779               	.L137:
+ 780 04a4 3196      		adiw r30,1
+ 781               	.L136:
+ 782 04a6 8091 9B00 		lds r24,155
+ 783 04aa 85FF      		sbrs r24,5
+ 784 04ac 00C0      		rjmp .L136
+ 785 04ae 9093 9C00 		sts 156,r25
+ 786 04b2 9081      		ld r25,Z
+ 787 04b4 9923      		tst r25
+ 788 04b6 01F4      		brne .L137
+ 789               	/* #APP */
+ 790               	 ;  82 "sample_1.c" 1
+ 791 04b8 F894      		cli
+ 792               	 ;  0 "" 2
+ 793               	/* #NOAPP */
+ 794 04ba 87E0      		ldi r24,lo8(7)
+ 795 04bc 83BF      		out 83-32,r24
+ 796 04be 81E0      		ldi r24,lo8(1)
+ 797 04c0 87BF      		out 87-32,r24
+ 798 04c2 88EC      		ldi r24,lo8(-56)
+ 799 04c4 82BF      		out 82-32,r24
+ 800               	/* #APP */
+ 801               	 ;  86 "sample_1.c" 1
+ 802 04c6 7894      		sei
+ 803               	 ;  0 "" 2
+ 804               	/* #NOAPP */
+ 805 04c8 0E94 0000 		call OSStatInit
+ 806 04cc 1092 9800 		sts 152,__zero_reg__
+ 807 04d0 87E6      		ldi r24,lo8(103)
+ 808 04d2 8093 9900 		sts 153,r24
+ 809 04d6 88E1      		ldi r24,lo8(24)
+ 810 04d8 8093 9A00 		sts 154,r24
+ 811 04dc 8EE0      		ldi r24,lo8(14)
+ 812 04de 8093 9D00 		sts 157,r24
+ 813 04e2 0E94 0000 		call Initialize_RTC
+ 814 04e6 FAE1      		ldi r31,lo8(26)
+ 815 04e8 CF2E      		mov r12,r31
+ 816 04ea D12C      		mov r13,__zero_reg__
+ 817 04ec CC0E      		add r12,r28
+ 818 04ee DD1E      		adc r13,r29
+ 819 04f0 5E01      		movw r10,r28
+ 820 04f2 0894      		sec
+ 821 04f4 A11C      		adc r10,__zero_reg__
+ 822 04f6 B11C      		adc r11,__zero_reg__
+ 823 04f8 EBE0      		ldi r30,lo8(11)
+ 824 04fa 4E2E      		mov r4,r30
+ 825 04fc 512C      		mov r5,__zero_reg__
+ 826 04fe 4C0E      		add r4,r28
+ 827 0500 5D1E      		adc r5,r29
+ 828 0502 70E0      		ldi r23,lo8(.LC6)
+ 829 0504 672E      		mov r6,r23
+ 830 0506 70E0      		ldi r23,hi8(.LC6)
+ 831 0508 772E      		mov r7,r23
+ 832 050a 64EC      		ldi r22,lo8(2500)
+GAS LISTING /tmp/ccXEG59c.s 			page 16
+
+
+ 833 050c 862E      		mov r8,r22
+ 834 050e 69E0      		ldi r22,hi8(2500)
+ 835 0510 962E      		mov r9,r22
+ 836               	.L161:
+ 837 0512 0E94 0000 		call Update_RTC_variables
+ 838 0516 4091 0000 		lds r20,READDATA+6
+ 839 051a 842F      		mov r24,r20
+ 840 051c 8295      		swap r24
+ 841 051e 8F70      		andi r24,0x0f
+ 842 0520 90E0      		ldi r25,lo8(0)
+ 843 0522 9C01      		movw r18,r24
+ 844 0524 220F      		lsl r18
+ 845 0526 331F      		rol r19
+ 846 0528 220F      		lsl r18
+ 847 052a 331F      		rol r19
+ 848 052c 220F      		lsl r18
+ 849 052e 331F      		rol r19
+ 850 0530 880F      		lsl r24
+ 851 0532 991F      		rol r25
+ 852 0534 280F      		add r18,r24
+ 853 0536 391F      		adc r19,r25
+ 854 0538 4F70      		andi r20,lo8(15)
+ 855 053a 420F      		add r20,r18
+ 856 053c 4093 0000 		sts YEAR_var.2024,r20
+ 857 0540 4091 0000 		lds r20,READDATA+5
+ 858 0544 842F      		mov r24,r20
+ 859 0546 8295      		swap r24
+ 860 0548 8F70      		andi r24,0x0f
+ 861 054a 90E0      		ldi r25,lo8(0)
+ 862 054c 9C01      		movw r18,r24
+ 863 054e 220F      		lsl r18
+ 864 0550 331F      		rol r19
+ 865 0552 220F      		lsl r18
+ 866 0554 331F      		rol r19
+ 867 0556 220F      		lsl r18
+ 868 0558 331F      		rol r19
+ 869 055a 880F      		lsl r24
+ 870 055c 991F      		rol r25
+ 871 055e 280F      		add r18,r24
+ 872 0560 391F      		adc r19,r25
+ 873 0562 4F70      		andi r20,lo8(15)
+ 874 0564 420F      		add r20,r18
+ 875 0566 4093 0000 		sts MONTH_var.2023,r20
+ 876 056a 4091 0000 		lds r20,READDATA+4
+ 877 056e 842F      		mov r24,r20
+ 878 0570 8295      		swap r24
+ 879 0572 8F70      		andi r24,0x0f
+ 880 0574 90E0      		ldi r25,lo8(0)
+ 881 0576 9C01      		movw r18,r24
+ 882 0578 220F      		lsl r18
+ 883 057a 331F      		rol r19
+ 884 057c 220F      		lsl r18
+ 885 057e 331F      		rol r19
+ 886 0580 220F      		lsl r18
+ 887 0582 331F      		rol r19
+ 888 0584 880F      		lsl r24
+ 889 0586 991F      		rol r25
+GAS LISTING /tmp/ccXEG59c.s 			page 17
+
+
+ 890 0588 280F      		add r18,r24
+ 891 058a 391F      		adc r19,r25
+ 892 058c 4F70      		andi r20,lo8(15)
+ 893 058e 420F      		add r20,r18
+ 894 0590 4093 0000 		sts DAY_var.2022,r20
+ 895 0594 4091 0000 		lds r20,READDATA+2
+ 896 0598 842F      		mov r24,r20
+ 897 059a 8295      		swap r24
+ 898 059c 8F70      		andi r24,0x0f
+ 899 059e 90E0      		ldi r25,lo8(0)
+ 900 05a0 9C01      		movw r18,r24
+ 901 05a2 220F      		lsl r18
+ 902 05a4 331F      		rol r19
+ 903 05a6 220F      		lsl r18
+ 904 05a8 331F      		rol r19
+ 905 05aa 220F      		lsl r18
+ 906 05ac 331F      		rol r19
+ 907 05ae 880F      		lsl r24
+ 908 05b0 991F      		rol r25
+ 909 05b2 280F      		add r18,r24
+ 910 05b4 391F      		adc r19,r25
+ 911 05b6 4F70      		andi r20,lo8(15)
+ 912 05b8 420F      		add r20,r18
+ 913 05ba 4093 0000 		sts HRS_var.2021,r20
+ 914 05be 4091 0000 		lds r20,READDATA+1
+ 915 05c2 842F      		mov r24,r20
+ 916 05c4 8295      		swap r24
+ 917 05c6 8F70      		andi r24,0x0f
+ 918 05c8 90E0      		ldi r25,lo8(0)
+ 919 05ca 9C01      		movw r18,r24
+ 920 05cc 220F      		lsl r18
+ 921 05ce 331F      		rol r19
+ 922 05d0 220F      		lsl r18
+ 923 05d2 331F      		rol r19
+ 924 05d4 220F      		lsl r18
+ 925 05d6 331F      		rol r19
+ 926 05d8 880F      		lsl r24
+ 927 05da 991F      		rol r25
+ 928 05dc 280F      		add r18,r24
+ 929 05de 391F      		adc r19,r25
+ 930 05e0 4F70      		andi r20,lo8(15)
+ 931 05e2 420F      		add r20,r18
+ 932 05e4 4093 0000 		sts MIN_var.2020,r20
+ 933 05e8 4091 0000 		lds r20,READDATA
+ 934 05ec 842F      		mov r24,r20
+ 935 05ee 8295      		swap r24
+ 936 05f0 8F70      		andi r24,0x0f
+ 937 05f2 90E0      		ldi r25,lo8(0)
+ 938 05f4 9C01      		movw r18,r24
+ 939 05f6 220F      		lsl r18
+ 940 05f8 331F      		rol r19
+ 941 05fa 220F      		lsl r18
+ 942 05fc 331F      		rol r19
+ 943 05fe 220F      		lsl r18
+ 944 0600 331F      		rol r19
+ 945 0602 880F      		lsl r24
+ 946 0604 991F      		rol r25
+GAS LISTING /tmp/ccXEG59c.s 			page 18
+
+
+ 947 0606 280F      		add r18,r24
+ 948 0608 391F      		adc r19,r25
+ 949 060a 4F70      		andi r20,lo8(15)
+ 950 060c 420F      		add r20,r18
+ 951 060e 4093 0000 		sts SEC_var.2019,r20
+ 952 0612 E0E0      		ldi r30,lo8(.LC2)
+ 953 0614 F0E0      		ldi r31,hi8(.LC2)
+ 954 0616 9DE0      		ldi r25,lo8(13)
+ 955               	.L139:
+ 956 0618 3196      		adiw r30,1
+ 957               	.L138:
+ 958 061a 8091 9B00 		lds r24,155
+ 959 061e 85FF      		sbrs r24,5
+ 960 0620 00C0      		rjmp .L138
+ 961 0622 9093 9C00 		sts 156,r25
+ 962 0626 9081      		ld r25,Z
+ 963 0628 9923      		tst r25
+ 964 062a 01F4      		brne .L139
+ 965 062c 30E0      		ldi r19,lo8(0)
+ 966               	.L182:
+ 967 062e 8091 9B00 		lds r24,155
+ 968 0632 87FF      		sbrs r24,7
+ 969 0634 00C0      		rjmp .L182
+ 970 0636 2091 9C00 		lds r18,156
+ 971 063a 2D30      		cpi r18,lo8(13)
+ 972 063c 01F0      		breq .L183
+ 973 063e C401      		movw r24,r8
+ 974               	/* #APP */
+ 975               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 976 0640 0197      		1: sbiw r24,1
+ 977 0642 01F4      		brne 1b
+ 978               	 ;  0 "" 2
+ 979               	/* #NOAPP */
+ 980               	.L141:
+ 981 0644 8091 9B00 		lds r24,155
+ 982 0648 85FF      		sbrs r24,5
+ 983 064a 00C0      		rjmp .L141
+ 984 064c F601      		movw r30,r12
+ 985 064e E30F      		add r30,r19
+ 986 0650 F11D      		adc r31,__zero_reg__
+ 987 0652 2083      		st Z,r18
+ 988 0654 2093 9C00 		sts 156,r18
+ 989 0658 3F5F      		subi r19,lo8(-(1))
+ 990 065a 00C0      		rjmp .L182
+ 991               	.L183:
+ 992 065c F601      		movw r30,r12
+ 993 065e E30F      		add r30,r19
+ 994 0660 F11D      		adc r31,__zero_reg__
+ 995 0662 1082      		st Z,__zero_reg__
+ 996 0664 C501      		movw r24,r10
+ 997 0666 B601      		movw r22,r12
+ 998 0668 0E94 0000 		call strcpy
+ 999 066c 80E0      		ldi r24,lo8(.LC3)
+ 1000 066e 90E0      		ldi r25,hi8(.LC3)
+ 1001 0670 B501      		movw r22,r10
+ 1002 0672 0E94 0000 		call strcmp
+ 1003 0676 8C01      		movw r16,r24
+GAS LISTING /tmp/ccXEG59c.s 			page 19
+
+
+ 1004 0678 80E0      		ldi r24,lo8(.LC4)
+ 1005 067a 90E0      		ldi r25,hi8(.LC4)
+ 1006 067c B501      		movw r22,r10
+ 1007 067e 0E94 0000 		call strcmp
+ 1008 0682 012B      		or r16,r17
+ 1009 0684 01F0      		breq .L163
+ 1010 0686 0097      		sbiw r24,0
+ 1011 0688 01F0      		breq .+2
+ 1012 068a 00C0      		rjmp .L143
+ 1013               	.L163:
+ 1014 068c E0E0      		ldi r30,lo8(.LC5)
+ 1015 068e F0E0      		ldi r31,hi8(.LC5)
+ 1016 0690 9DE0      		ldi r25,lo8(13)
+ 1017               	.L146:
+ 1018 0692 3196      		adiw r30,1
+ 1019               	.L145:
+ 1020 0694 8091 9B00 		lds r24,155
+ 1021 0698 85FF      		sbrs r24,5
+ 1022 069a 00C0      		rjmp .L145
+ 1023 069c 9093 9C00 		sts 156,r25
+ 1024 06a0 9081      		ld r25,Z
+ 1025 06a2 9923      		tst r25
+ 1026 06a4 01F4      		brne .L146
+ 1027 06a6 2DB7      		in r18,__SP_L__
+ 1028 06a8 3EB7      		in r19,__SP_H__
+ 1029 06aa 2A50      		subi r18,lo8(-(-10))
+ 1030 06ac 3040      		sbci r19,hi8(-(-10))
+ 1031 06ae 0FB6      		in __tmp_reg__,__SREG__
+ 1032 06b0 F894      		cli
+ 1033 06b2 3EBF      		out __SP_H__,r19
+ 1034 06b4 0FBE      		out __SREG__,__tmp_reg__
+ 1035 06b6 2DBF      		out __SP_L__,r18
+ 1036 06b8 EDB7      		in r30,__SP_L__
+ 1037 06ba FEB7      		in r31,__SP_H__
+ 1038 06bc 3196      		adiw r30,1
+ 1039 06be ADB7      		in r26,__SP_L__
+ 1040 06c0 BEB7      		in r27,__SP_H__
+ 1041 06c2 1296      		adiw r26,1+1
+ 1042 06c4 5C92      		st X,r5
+ 1043 06c6 4E92      		st -X,r4
+ 1044 06c8 1197      		sbiw r26,1
+ 1045 06ca 7382      		std Z+3,r7
+ 1046 06cc 6282      		std Z+2,r6
+ 1047 06ce 8091 0000 		lds r24,HRS_var.2021
+ 1048 06d2 8483      		std Z+4,r24
+ 1049 06d4 1582      		std Z+5,__zero_reg__
+ 1050 06d6 8091 0000 		lds r24,MIN_var.2020
+ 1051 06da 8683      		std Z+6,r24
+ 1052 06dc 1782      		std Z+7,__zero_reg__
+ 1053 06de 8091 0000 		lds r24,SEC_var.2019
+ 1054 06e2 8087      		std Z+8,r24
+ 1055 06e4 1186      		std Z+9,__zero_reg__
+ 1056 06e6 0E94 0000 		call sprintf
+ 1057 06ea 9B85      		ldd r25,Y+11
+ 1058 06ec 2DB7      		in r18,__SP_L__
+ 1059 06ee 3EB7      		in r19,__SP_H__
+ 1060 06f0 265F      		subi r18,lo8(-(10))
+GAS LISTING /tmp/ccXEG59c.s 			page 20
+
+
+ 1061 06f2 3F4F      		sbci r19,hi8(-(10))
+ 1062 06f4 0FB6      		in __tmp_reg__,__SREG__
+ 1063 06f6 F894      		cli
+ 1064 06f8 3EBF      		out __SP_H__,r19
+ 1065 06fa 0FBE      		out __SREG__,__tmp_reg__
+ 1066 06fc 2DBF      		out __SP_L__,r18
+ 1067 06fe 9923      		tst r25
+ 1068 0700 01F0      		breq .L143
+ 1069 0702 F201      		movw r30,r4
+ 1070               	.L148:
+ 1071 0704 3196      		adiw r30,1
+ 1072               	.L147:
+ 1073 0706 8091 9B00 		lds r24,155
+ 1074 070a 85FF      		sbrs r24,5
+ 1075 070c 00C0      		rjmp .L147
+ 1076 070e 9093 9C00 		sts 156,r25
+ 1077 0712 9081      		ld r25,Z
+ 1078 0714 9923      		tst r25
+ 1079 0716 01F4      		brne .L148
+ 1080               	.L143:
+ 1081 0718 80E0      		ldi r24,lo8(.LC7)
+ 1082 071a 90E0      		ldi r25,hi8(.LC7)
+ 1083 071c B501      		movw r22,r10
+ 1084 071e 0E94 0000 		call strcmp
+ 1085 0722 8C01      		movw r16,r24
+ 1086 0724 80E0      		ldi r24,lo8(.LC8)
+ 1087 0726 90E0      		ldi r25,hi8(.LC8)
+ 1088 0728 B501      		movw r22,r10
+ 1089 072a 0E94 0000 		call strcmp
+ 1090 072e 7C01      		movw r14,r24
+ 1091 0730 80E0      		ldi r24,lo8(.LC9)
+ 1092 0732 90E0      		ldi r25,hi8(.LC9)
+ 1093 0734 B501      		movw r22,r10
+ 1094 0736 0E94 0000 		call strcmp
+ 1095 073a 9C01      		movw r18,r24
+ 1096 073c 80E0      		ldi r24,lo8(0)
+ 1097 073e 012B      		or r16,r17
+ 1098 0740 01F4      		brne .L150
+ 1099 0742 81E0      		ldi r24,lo8(1)
+ 1100               	.L150:
+ 1101 0744 90E0      		ldi r25,lo8(0)
+ 1102 0746 EF28      		or r14,r15
+ 1103 0748 01F4      		brne .L151
+ 1104 074a 91E0      		ldi r25,lo8(1)
+ 1105               	.L151:
+ 1106 074c 892B      		or r24,r25
+ 1107 074e 90E0      		ldi r25,lo8(0)
+ 1108 0750 40E0      		ldi r20,lo8(0)
+ 1109 0752 50E0      		ldi r21,hi8(0)
+ 1110 0754 232B      		or r18,r19
+ 1111 0756 01F4      		brne .L152
+ 1112 0758 41E0      		ldi r20,lo8(1)
+ 1113 075a 50E0      		ldi r21,hi8(1)
+ 1114               	.L152:
+ 1115 075c 842B      		or r24,r20
+ 1116 075e 952B      		or r25,r21
+ 1117 0760 892B      		or r24,r25
+GAS LISTING /tmp/ccXEG59c.s 			page 21
+
+
+ 1118 0762 01F0      		breq .L149
+ 1119 0764 E0E0      		ldi r30,lo8(.LC10)
+ 1120 0766 F0E0      		ldi r31,hi8(.LC10)
+ 1121 0768 9DE0      		ldi r25,lo8(13)
+ 1122               	.L154:
+ 1123 076a 3196      		adiw r30,1
+ 1124               	.L153:
+ 1125 076c 8091 9B00 		lds r24,155
+ 1126 0770 85FF      		sbrs r24,5
+ 1127 0772 00C0      		rjmp .L153
+ 1128 0774 9093 9C00 		sts 156,r25
+ 1129 0778 9081      		ld r25,Z
+ 1130 077a 9923      		tst r25
+ 1131 077c 01F4      		brne .L154
+ 1132               	.L149:
+ 1133 077e 80E0      		ldi r24,lo8(.LC11)
+ 1134 0780 90E0      		ldi r25,hi8(.LC11)
+ 1135 0782 B501      		movw r22,r10
+ 1136 0784 0E94 0000 		call strcmp
+ 1137 0788 8C01      		movw r16,r24
+ 1138 078a 80E0      		ldi r24,lo8(.LC12)
+ 1139 078c 90E0      		ldi r25,hi8(.LC12)
+ 1140 078e B501      		movw r22,r10
+ 1141 0790 0E94 0000 		call strcmp
+ 1142 0794 012B      		or r16,r17
+ 1143 0796 01F0      		breq .L164
+ 1144 0798 0097      		sbiw r24,0
+ 1145 079a 01F4      		brne .L155
+ 1146               	.L164:
+ 1147 079c E0E0      		ldi r30,lo8(.LC13)
+ 1148 079e F0E0      		ldi r31,hi8(.LC13)
+ 1149 07a0 9DE0      		ldi r25,lo8(13)
+ 1150               	.L158:
+ 1151 07a2 3196      		adiw r30,1
+ 1152               	.L157:
+ 1153 07a4 8091 9B00 		lds r24,155
+ 1154 07a8 85FF      		sbrs r24,5
+ 1155 07aa 00C0      		rjmp .L157
+ 1156 07ac 9093 9C00 		sts 156,r25
+ 1157 07b0 9081      		ld r25,Z
+ 1158 07b2 9923      		tst r25
+ 1159 07b4 01F4      		brne .L158
+ 1160 07b6 8091 0000 		lds r24,OSCPUUsage
+ 1161 07ba 9927      		clr r25
+ 1162 07bc 87FD      		sbrc r24,7
+ 1163 07be 9095      		com r25
+ 1164 07c0 0E94 0000 		call UART_Transmit_num
+ 1165 07c4 E0E0      		ldi r30,lo8(.LC14)
+ 1166 07c6 F0E0      		ldi r31,hi8(.LC14)
+ 1167 07c8 95E2      		ldi r25,lo8(37)
+ 1168               	.L160:
+ 1169 07ca 3196      		adiw r30,1
+ 1170               	.L159:
+ 1171 07cc 8091 9B00 		lds r24,155
+ 1172 07d0 85FF      		sbrs r24,5
+ 1173 07d2 00C0      		rjmp .L159
+ 1174 07d4 9093 9C00 		sts 156,r25
+GAS LISTING /tmp/ccXEG59c.s 			page 22
+
+
+ 1175 07d8 9081      		ld r25,Z
+ 1176 07da 9923      		tst r25
+ 1177 07dc 01F4      		brne .L160
+ 1178               	.L155:
+ 1179 07de 80E0      		ldi r24,lo8(0)
+ 1180 07e0 60E0      		ldi r22,lo8(0)
+ 1181 07e2 41E0      		ldi r20,lo8(1)
+ 1182 07e4 20E0      		ldi r18,lo8(0)
+ 1183 07e6 30E0      		ldi r19,hi8(0)
+ 1184 07e8 0E94 0000 		call OSTimeDlyHMSM
+ 1185 07ec 00C0      		rjmp .L161
+ 1186               		.size	Task1, .-Task1
+ 1187               		.data
+ 1188               	.LC15:
+ 1189 009d 0920 5765 		.string	"\t Welcome to uNiBash enviroment"
+ 1189      6C63 6F6D 
+ 1189      6520 746F 
+ 1189      2075 4E69 
+ 1189      4261 7368 
+ 1190               	.LC16:
+ 1191 00bd 0D20 5573 		.string	"\r Username:"
+ 1191      6572 6E61 
+ 1191      6D65 3A00 
+ 1192               	.LC17:
+ 1193 00c9 0D20 5061 		.string	"\r Password:"
+ 1193      7373 776F 
+ 1193      7264 3A00 
+ 1194               	.LC18:
+ 1195 00d5 0D49 6E76 		.string	"\rInvalid username or password"
+ 1195      616C 6964 
+ 1195      2075 7365 
+ 1195      726E 616D 
+ 1195      6520 6F72 
+ 1196               		.text
+ 1197               	.global	main
+ 1198               		.type	main, @function
+ 1199               	main:
+ 1200 07ee 0F93      		push r16
+ 1201 07f0 1F93      		push r17
+ 1202 07f2 DF93      		push r29
+ 1203 07f4 CF93      		push r28
+ 1204 07f6 CDB7      		in r28,__SP_L__
+ 1205 07f8 DEB7      		in r29,__SP_H__
+ 1206 07fa C456      		subi r28,lo8(-(-100))
+ 1207 07fc D040      		sbci r29,hi8(-(-100))
+ 1208 07fe 0FB6      		in __tmp_reg__,__SREG__
+ 1209 0800 F894      		cli
+ 1210 0802 DEBF      		out __SP_H__,r29
+ 1211 0804 0FBE      		out __SREG__,__tmp_reg__
+ 1212 0806 CDBF      		out __SP_L__,r28
+ 1213               	/* prologue: function */
+ 1214               	/* frame size = 100 */
+ 1215 0808 1092 9800 		sts 152,__zero_reg__
+ 1216 080c 87E6      		ldi r24,lo8(103)
+ 1217 080e 8093 9900 		sts 153,r24
+ 1218 0812 88E1      		ldi r24,lo8(24)
+ 1219 0814 8093 9A00 		sts 154,r24
+GAS LISTING /tmp/ccXEG59c.s 			page 23
+
+
+ 1220 0818 8EE0      		ldi r24,lo8(14)
+ 1221 081a 8093 9D00 		sts 157,r24
+ 1222 081e E0E0      		ldi r30,lo8(.LC15)
+ 1223 0820 F0E0      		ldi r31,hi8(.LC15)
+ 1224 0822 99E0      		ldi r25,lo8(9)
+ 1225               	.L186:
+ 1226 0824 3196      		adiw r30,1
+ 1227               	.L185:
+ 1228 0826 8091 9B00 		lds r24,155
+ 1229 082a 85FF      		sbrs r24,5
+ 1230 082c 00C0      		rjmp .L185
+ 1231 082e 9093 9C00 		sts 156,r25
+ 1232 0832 9081      		ld r25,Z
+ 1233 0834 9923      		tst r25
+ 1234 0836 01F4      		brne .L186
+ 1235 0838 E0E0      		ldi r30,lo8(.LC16)
+ 1236 083a F0E0      		ldi r31,hi8(.LC16)
+ 1237 083c 9DE0      		ldi r25,lo8(13)
+ 1238               	.L188:
+ 1239 083e 3196      		adiw r30,1
+ 1240               	.L187:
+ 1241 0840 8091 9B00 		lds r24,155
+ 1242 0844 85FF      		sbrs r24,5
+ 1243 0846 00C0      		rjmp .L187
+ 1244 0848 9093 9C00 		sts 156,r25
+ 1245 084c 9081      		ld r25,Z
+ 1246 084e 9923      		tst r25
+ 1247 0850 01F4      		brne .L188
+ 1248 0852 30E0      		ldi r19,lo8(0)
+ 1249 0854 8E01      		movw r16,r28
+ 1250 0856 0F5F      		subi r16,lo8(-(1))
+ 1251 0858 1F4F      		sbci r17,hi8(-(1))
+ 1252 085a 44EC      		ldi r20,lo8(2500)
+ 1253 085c 59E0      		ldi r21,hi8(2500)
+ 1254               	.L216:
+ 1255 085e 8091 9B00 		lds r24,155
+ 1256 0862 87FF      		sbrs r24,7
+ 1257 0864 00C0      		rjmp .L216
+ 1258 0866 2091 9C00 		lds r18,156
+ 1259 086a 2D30      		cpi r18,lo8(13)
+ 1260 086c 01F0      		breq .L218
+ 1261 086e CA01      		movw r24,r20
+ 1262               	/* #APP */
+ 1263               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 1264 0870 0197      		1: sbiw r24,1
+ 1265 0872 01F4      		brne 1b
+ 1266               	 ;  0 "" 2
+ 1267               	/* #NOAPP */
+ 1268               	.L190:
+ 1269 0874 8091 9B00 		lds r24,155
+ 1270 0878 85FF      		sbrs r24,5
+ 1271 087a 00C0      		rjmp .L190
+ 1272 087c F801      		movw r30,r16
+ 1273 087e E30F      		add r30,r19
+ 1274 0880 F11D      		adc r31,__zero_reg__
+ 1275 0882 2083      		st Z,r18
+ 1276 0884 2093 9C00 		sts 156,r18
+GAS LISTING /tmp/ccXEG59c.s 			page 24
+
+
+ 1277 0888 3F5F      		subi r19,lo8(-(1))
+ 1278 088a 00C0      		rjmp .L216
+ 1279               	.L218:
+ 1280 088c F801      		movw r30,r16
+ 1281 088e E30F      		add r30,r19
+ 1282 0890 F11D      		adc r31,__zero_reg__
+ 1283 0892 1082      		st Z,__zero_reg__
+ 1284 0894 80E0      		ldi r24,lo8(user1)
+ 1285 0896 90E0      		ldi r25,hi8(user1)
+ 1286 0898 B801      		movw r22,r16
+ 1287 089a 0E94 0000 		call strcmp
+ 1288 089e 782F      		mov r23,r24
+ 1289 08a0 E0E0      		ldi r30,lo8(.LC17)
+ 1290 08a2 F0E0      		ldi r31,hi8(.LC17)
+ 1291 08a4 9DE0      		ldi r25,lo8(13)
+ 1292               	.L193:
+ 1293 08a6 3196      		adiw r30,1
+ 1294               	.L192:
+ 1295 08a8 8091 9B00 		lds r24,155
+ 1296 08ac 85FF      		sbrs r24,5
+ 1297 08ae 00C0      		rjmp .L192
+ 1298 08b0 9093 9C00 		sts 156,r25
+ 1299 08b4 9081      		ld r25,Z
+ 1300 08b6 9923      		tst r25
+ 1301 08b8 01F4      		brne .L193
+ 1302 08ba 30E0      		ldi r19,lo8(0)
+ 1303 08bc 44EC      		ldi r20,lo8(2500)
+ 1304 08be 59E0      		ldi r21,hi8(2500)
+ 1305 08c0 6AE2      		ldi r22,lo8(42)
+ 1306               	.L217:
+ 1307 08c2 8091 9B00 		lds r24,155
+ 1308 08c6 87FF      		sbrs r24,7
+ 1309 08c8 00C0      		rjmp .L217
+ 1310 08ca 2091 9C00 		lds r18,156
+ 1311 08ce 2D30      		cpi r18,lo8(13)
+ 1312 08d0 01F0      		breq .L219
+ 1313 08d2 CA01      		movw r24,r20
+ 1314               	/* #APP */
+ 1315               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 1316 08d4 0197      		1: sbiw r24,1
+ 1317 08d6 01F4      		brne 1b
+ 1318               	 ;  0 "" 2
+ 1319               	/* #NOAPP */
+ 1320               	.L195:
+ 1321 08d8 8091 9B00 		lds r24,155
+ 1322 08dc 85FF      		sbrs r24,5
+ 1323 08de 00C0      		rjmp .L195
+ 1324 08e0 F801      		movw r30,r16
+ 1325 08e2 E30F      		add r30,r19
+ 1326 08e4 F11D      		adc r31,__zero_reg__
+ 1327 08e6 2083      		st Z,r18
+ 1328 08e8 6093 9C00 		sts 156,r22
+ 1329 08ec 3F5F      		subi r19,lo8(-(1))
+ 1330 08ee 00C0      		rjmp .L217
+ 1331               	.L219:
+ 1332 08f0 F801      		movw r30,r16
+ 1333 08f2 E30F      		add r30,r19
+GAS LISTING /tmp/ccXEG59c.s 			page 25
+
+
+ 1334 08f4 F11D      		adc r31,__zero_reg__
+ 1335 08f6 1082      		st Z,__zero_reg__
+ 1336 08f8 7723      		tst r23
+ 1337 08fa 01F0      		breq .L197
+ 1338 08fc 80E0      		ldi r24,lo8(user2)
+ 1339 08fe 90E0      		ldi r25,hi8(user2)
+ 1340 0900 B801      		movw r22,r16
+ 1341 0902 0E94 0000 		call strcmp
+ 1342 0906 0097      		sbiw r24,0
+ 1343 0908 01F4      		brne .L220
+ 1344               	.L197:
+ 1345 090a 0E94 0000 		call OSInit
+ 1346 090e 80E0      		ldi r24,lo8(gs(Task1))
+ 1347 0910 90E0      		ldi r25,hi8(gs(Task1))
+ 1348 0912 60E0      		ldi r22,lo8(0)
+ 1349 0914 70E0      		ldi r23,hi8(0)
+ 1350 0916 40E0      		ldi r20,lo8(Task1Stack+511)
+ 1351 0918 50E0      		ldi r21,hi8(Task1Stack+511)
+ 1352 091a 20E0      		ldi r18,lo8(0)
+ 1353 091c 0E94 0000 		call OSTaskCreate
+ 1354 0920 80E0      		ldi r24,lo8(gs(Task2))
+ 1355 0922 90E0      		ldi r25,hi8(gs(Task2))
+ 1356 0924 60E0      		ldi r22,lo8(0)
+ 1357 0926 70E0      		ldi r23,hi8(0)
+ 1358 0928 40E0      		ldi r20,lo8(Task2Stack+511)
+ 1359 092a 50E0      		ldi r21,hi8(Task2Stack+511)
+ 1360 092c 21E0      		ldi r18,lo8(1)
+ 1361 092e 0E94 0000 		call OSTaskCreate
+ 1362 0932 0E94 0000 		call OSStart
+ 1363               	.L200:
+ 1364 0936 80E0      		ldi r24,lo8(0)
+ 1365 0938 90E0      		ldi r25,hi8(0)
+ 1366               	/* epilogue start */
+ 1367 093a CC59      		subi r28,lo8(-(100))
+ 1368 093c DF4F      		sbci r29,hi8(-(100))
+ 1369 093e 0FB6      		in __tmp_reg__,__SREG__
+ 1370 0940 F894      		cli
+ 1371 0942 DEBF      		out __SP_H__,r29
+ 1372 0944 0FBE      		out __SREG__,__tmp_reg__
+ 1373 0946 CDBF      		out __SP_L__,r28
+ 1374 0948 CF91      		pop r28
+ 1375 094a DF91      		pop r29
+ 1376 094c 1F91      		pop r17
+ 1377 094e 0F91      		pop r16
+ 1378 0950 0895      		ret
+ 1379               	.L220:
+ 1380 0952 80E0      		ldi r24,lo8(pass1)
+ 1381 0954 90E0      		ldi r25,hi8(pass1)
+ 1382 0956 B801      		movw r22,r16
+ 1383 0958 0E94 0000 		call strcmp
+ 1384 095c 0097      		sbiw r24,0
+ 1385 095e 01F0      		breq .L197
+ 1386 0960 E0E0      		ldi r30,lo8(.LC18)
+ 1387 0962 F0E0      		ldi r31,hi8(.LC18)
+ 1388 0964 9DE0      		ldi r25,lo8(13)
+ 1389               	.L199:
+ 1390 0966 3196      		adiw r30,1
+GAS LISTING /tmp/ccXEG59c.s 			page 26
+
+
+ 1391               	.L198:
+ 1392 0968 8091 9B00 		lds r24,155
+ 1393 096c 85FF      		sbrs r24,5
+ 1394 096e 00C0      		rjmp .L198
+ 1395 0970 9093 9C00 		sts 156,r25
+ 1396 0974 9081      		ld r25,Z
+ 1397 0976 9923      		tst r25
+ 1398 0978 01F4      		brne .L199
+ 1399 097a 00C0      		rjmp .L200
+ 1400               		.size	main, .-main
+ 1401               	.global	user1
+ 1402               		.data
+ 1403               		.type	user1, @object
+ 1404               		.size	user1, 8
+ 1405               	user1:
+ 1406 00f3 6C61 6565 		.string	"laeeq"
+ 1406      7100 
+ 1407 00f9 0000      		.skip 2,0
+ 1408               	.global	pass1
+ 1409               		.type	pass1, @object
+ 1410               		.size	pass1, 8
+ 1411               	pass1:
+ 1412 00fb 6C61 6565 		.ascii	"laeeq123"
+ 1412      7131 3233 
+ 1413               	.global	user2
+ 1414               		.type	user2, @object
+ 1415               		.size	user2, 8
+ 1416               	user2:
+ 1417 0103 7573 6572 		.string	"user"
+ 1417      00
+ 1418 0108 0000 00   		.skip 3,0
+ 1419               	.global	pass2
+ 1420               		.type	pass2, @object
+ 1421               		.size	pass2, 8
+ 1422               	pass2:
+ 1423 010b 7573 6572 		.string	"user123"
+ 1423      3132 3300 
+ 1424               		.lcomm YEAR_var.2024,1
+ 1425               		.lcomm MONTH_var.2023,1
+ 1426               		.lcomm DAY_var.2022,1
+ 1427               		.lcomm HRS_var.2021,1
+ 1428               		.lcomm MIN_var.2020,1
+ 1429               		.lcomm SEC_var.2019,1
+ 1430               		.comm READDATA,10,1
+ 1431               		.comm Task1Stack,512,1
+ 1432               		.comm Task2Stack,512,1
+GAS LISTING /tmp/ccXEG59c.s 			page 27
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sample_1.c
+     /tmp/ccXEG59c.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccXEG59c.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccXEG59c.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccXEG59c.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccXEG59c.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccXEG59c.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccXEG59c.s:13     .text:00000000 Serial_Init
+     /tmp/ccXEG59c.s:28     .text:00000018 USART_Init
+     /tmp/ccXEG59c.s:42     .text:0000002e USART_Receive
+     /tmp/ccXEG59c.s:55     .text:0000003c USART_Transmit
+     /tmp/ccXEG59c.s:69     .text:0000004c print_string
+     /tmp/ccXEG59c.s:91     .text:0000006a UART_Receive_string
+     /tmp/ccXEG59c.s:144    .text:000000c0 UART_Receive_string_pass
+     /tmp/ccXEG59c.s:198    .text:00000118 UART_Transmit_num
+     /tmp/ccXEG59c.s:271    .text:0000019a year
+     /tmp/ccXEG59c.s:279    .text:0000019c month
+     /tmp/ccXEG59c.s:287    .text:0000019e day
+     /tmp/ccXEG59c.s:295    .text:000001a0 hour
+     /tmp/ccXEG59c.s:303    .text:000001a2 min
+     /tmp/ccXEG59c.s:311    .text:000001a4 sec
+     /tmp/ccXEG59c.s:319    .text:000001a6 RTC_Init
+     /tmp/ccXEG59c.s:329    .text:000001ae Write_RTC
+     /tmp/ccXEG59c.s:416    .text:00000276 Initialize_RTC
+     /tmp/ccXEG59c.s:427    .text:00000282 Update_RTC_variables
+                            *COM*:0000000a READDATA
+     /tmp/ccXEG59c.s:504    .text:0000032c RTC_getYear
+     /tmp/ccXEG59c.s:531    .text:00000356 RTC_getMonth
+     /tmp/ccXEG59c.s:557    .text:0000037e RTC_getDay
+     /tmp/ccXEG59c.s:583    .text:000003a6 RTC_getHour
+     /tmp/ccXEG59c.s:609    .text:000003ce RTC_getMinute
+     /tmp/ccXEG59c.s:635    .text:000003f6 RTC_getSecond
+     /tmp/ccXEG59c.s:661    .text:0000041e conv_same_dec
+     /tmp/ccXEG59c.s:690    .text:00000442 Task2
+     /tmp/ccXEG59c.s:748    .text:0000046c Task1
+                             .bss:00000000 YEAR_var.2024
+     /tmp/ccXEG59c.s:1424   .bss:00000001 MONTH_var.2023
+     /tmp/ccXEG59c.s:1425   .bss:00000002 DAY_var.2022
+     /tmp/ccXEG59c.s:1426   .bss:00000003 HRS_var.2021
+     /tmp/ccXEG59c.s:1427   .bss:00000004 MIN_var.2020
+     /tmp/ccXEG59c.s:1428   .bss:00000005 SEC_var.2019
+     /tmp/ccXEG59c.s:1199   .text:000007ee main
+     /tmp/ccXEG59c.s:1405   .data:000000f3 user1
+     /tmp/ccXEG59c.s:1416   .data:00000103 user2
+                            *COM*:00000200 Task1Stack
+                            *COM*:00000200 Task2Stack
+     /tmp/ccXEG59c.s:1411   .data:000000fb pass1
+     /tmp/ccXEG59c.s:1422   .data:0000010b pass2
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__udivmodhi4
+OSTimeDlyHMSM
+OSStatInit
+strcpy
+GAS LISTING /tmp/ccXEG59c.s 			page 28
+
+
+strcmp
+sprintf
+OSCPUUsage
+OSInit
+OSTaskCreate
+OSStart

@@ -1,0 +1,164 @@
+GAS LISTING /tmp/ccezGUsE.s 			page 1
+
+
+   1               		.file	"os_cpu_c.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.text
+  11               	.global	OSTaskStkInit
+  12               		.type	OSTaskStkInit, @function
+  13               	OSTaskStkInit:
+  14               	/* prologue: function */
+  15               	/* frame size = 0 */
+  16 0000 FA01      		movw r30,r20
+  17 0002 8083      		st Z,r24
+  18 0004 9293      		st -Z,r25
+  19 0006 1292      		st -Z,__zero_reg__
+  20 0008 1292      		st -Z,__zero_reg__
+  21 000a 1292      		st -Z,__zero_reg__
+  22 000c 1292      		st -Z,__zero_reg__
+  23 000e 1292      		st -Z,__zero_reg__
+  24 0010 1292      		st -Z,__zero_reg__
+  25 0012 1292      		st -Z,__zero_reg__
+  26 0014 1292      		st -Z,__zero_reg__
+  27 0016 1292      		st -Z,__zero_reg__
+  28 0018 1292      		st -Z,__zero_reg__
+  29 001a 1292      		st -Z,__zero_reg__
+  30 001c 1292      		st -Z,__zero_reg__
+  31 001e 1292      		st -Z,__zero_reg__
+  32 0020 1292      		st -Z,__zero_reg__
+  33 0022 1292      		st -Z,__zero_reg__
+  34 0024 1292      		st -Z,__zero_reg__
+  35 0026 1292      		st -Z,__zero_reg__
+  36 0028 1292      		st -Z,__zero_reg__
+  37 002a 1292      		st -Z,__zero_reg__
+  38 002c 1292      		st -Z,__zero_reg__
+  39 002e 1292      		st -Z,__zero_reg__
+  40 0030 1292      		st -Z,__zero_reg__
+  41 0032 1292      		st -Z,__zero_reg__
+  42 0034 1292      		st -Z,__zero_reg__
+  43 0036 6293      		st -Z,r22
+  44 0038 7293      		st -Z,r23
+  45 003a 1292      		st -Z,__zero_reg__
+  46 003c 1292      		st -Z,__zero_reg__
+  47 003e 1292      		st -Z,__zero_reg__
+  48 0040 1292      		st -Z,__zero_reg__
+  49 0042 1292      		st -Z,__zero_reg__
+  50 0044 1292      		st -Z,__zero_reg__
+  51 0046 1292      		st -Z,__zero_reg__
+  52 0048 80E8      		ldi r24,lo8(-128)
+  53 004a 8293      		st -Z,r24
+  54 004c 3197      		sbiw r30,1
+  55 004e CF01      		movw r24,r30
+  56               	/* epilogue start */
+  57 0050 0895      		ret
+GAS LISTING /tmp/ccezGUsE.s 			page 2
+
+
+  58               		.size	OSTaskStkInit, .-OSTaskStkInit
+  59               	.global	OSTaskCreateHook
+  60               		.type	OSTaskCreateHook, @function
+  61               	OSTaskCreateHook:
+  62               	/* prologue: function */
+  63               	/* frame size = 0 */
+  64               	/* epilogue start */
+  65 0052 0895      		ret
+  66               		.size	OSTaskCreateHook, .-OSTaskCreateHook
+  67               	.global	OSTaskDelHook
+  68               		.type	OSTaskDelHook, @function
+  69               	OSTaskDelHook:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72               	/* epilogue start */
+  73 0054 0895      		ret
+  74               		.size	OSTaskDelHook, .-OSTaskDelHook
+  75               	.global	OSTaskSwHook
+  76               		.type	OSTaskSwHook, @function
+  77               	OSTaskSwHook:
+  78               	/* prologue: function */
+  79               	/* frame size = 0 */
+  80               	/* epilogue start */
+  81 0056 0895      		ret
+  82               		.size	OSTaskSwHook, .-OSTaskSwHook
+  83               	.global	OSTaskStatHook
+  84               		.type	OSTaskStatHook, @function
+  85               	OSTaskStatHook:
+  86               	/* prologue: function */
+  87               	/* frame size = 0 */
+  88               	/* epilogue start */
+  89 0058 0895      		ret
+  90               		.size	OSTaskStatHook, .-OSTaskStatHook
+  91               	.global	OSTimeTickHook
+  92               		.type	OSTimeTickHook, @function
+  93               	OSTimeTickHook:
+  94               	/* prologue: function */
+  95               	/* frame size = 0 */
+  96               	/* epilogue start */
+  97 005a 0895      		ret
+  98               		.size	OSTimeTickHook, .-OSTimeTickHook
+  99               	.global	OSInitHookBegin
+ 100               		.type	OSInitHookBegin, @function
+ 101               	OSInitHookBegin:
+ 102               	/* prologue: function */
+ 103               	/* frame size = 0 */
+ 104               	/* epilogue start */
+ 105 005c 0895      		ret
+ 106               		.size	OSInitHookBegin, .-OSInitHookBegin
+ 107               	.global	OSInitHookEnd
+ 108               		.type	OSInitHookEnd, @function
+ 109               	OSInitHookEnd:
+ 110               	/* prologue: function */
+ 111               	/* frame size = 0 */
+ 112               	/* epilogue start */
+ 113 005e 0895      		ret
+ 114               		.size	OSInitHookEnd, .-OSInitHookEnd
+GAS LISTING /tmp/ccezGUsE.s 			page 3
+
+
+ 115               	.global	OSTaskIdleHook
+ 116               		.type	OSTaskIdleHook, @function
+ 117               	OSTaskIdleHook:
+ 118               	/* prologue: function */
+ 119               	/* frame size = 0 */
+ 120               	/* epilogue start */
+ 121 0060 0895      		ret
+ 122               		.size	OSTaskIdleHook, .-OSTaskIdleHook
+ 123               	.global	OSTCBInitHook
+ 124               		.type	OSTCBInitHook, @function
+ 125               	OSTCBInitHook:
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	/* epilogue start */
+ 129 0062 0895      		ret
+ 130               		.size	OSTCBInitHook, .-OSTCBInitHook
+GAS LISTING /tmp/ccezGUsE.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 os_cpu_c.c
+     /tmp/ccezGUsE.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccezGUsE.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccezGUsE.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccezGUsE.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccezGUsE.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccezGUsE.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccezGUsE.s:13     .text:00000000 OSTaskStkInit
+     /tmp/ccezGUsE.s:61     .text:00000052 OSTaskCreateHook
+     /tmp/ccezGUsE.s:69     .text:00000054 OSTaskDelHook
+     /tmp/ccezGUsE.s:77     .text:00000056 OSTaskSwHook
+     /tmp/ccezGUsE.s:85     .text:00000058 OSTaskStatHook
+     /tmp/ccezGUsE.s:93     .text:0000005a OSTimeTickHook
+     /tmp/ccezGUsE.s:101    .text:0000005c OSInitHookBegin
+     /tmp/ccezGUsE.s:109    .text:0000005e OSInitHookEnd
+     /tmp/ccezGUsE.s:117    .text:00000060 OSTaskIdleHook
+     /tmp/ccezGUsE.s:125    .text:00000062 OSTCBInitHook
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

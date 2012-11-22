@@ -1,0 +1,43 @@
+uNiBash 0.1 : Embedded Shell enviroment 
+---------------------------------------
+Author: Laeeq 
+Version: 0.1 (experimental, unstable) 
+
+Introduction:
+-----------------------
+This is a rough, ugly and quick code to realize an embedded shell enviorment for embedded systems particualrly for the unibaord. Inspired from Bash shell and as it runs on uniboard, the name uNiBash comes as a logical choice. The capital and small case is for some eye candy. 
+
+in very simple words what it is and what can it do, first lest quickly think about shells. Shell enviroemnts can be realized by 
+* command interpreattion 
+* language interpretation. 
+
+As of now, uNiBash has some commands like time, who etc. and these give the required functionality. Further work is required in 
+
+* addming more relavant commands 
+* porting of open source tools like i2c-tools etc. 
+
+So till the final version 1.0 is released, i wish to add all relevant commands concerning all majpr peripherals . Thereafter version2.0 will beginthe language interpretation part of it. Finally the end goal is ot enablle this code within the bootloader itself so that rapid application development and testing can take place, 
+
+Imagine where one developer purchase this board and boots it via UART and gets 
+
+Welcome to uNiBash 
+
+login : user
+pass : ******
+
+welcome ! 
+user@tty1: time 
+11:25:52 IST 
+
+user@tty1: LED* status 
+ALL OFF 
+
+user@tty1: LED1 ON 
+LED1 ON 
+
+user@tty1: if (SENSOR1 >50); LED1 ON; else LED* OFF; 
+user@tty1: 
+
+That is the final goal of uNiBash ! 
+
+

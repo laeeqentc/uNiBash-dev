@@ -5,6 +5,8 @@ Version: 0.1 (experimental, unstable)
 
 Introduction:
 -----------------------
+UPDATE: NO longer active. Saldy i have to depcreate it now. It was a good learning experience.
+
 UPDATE: no longer in active development. The hardware evoled a lot since 2009. perhaps on new arduino or other boards this would be worth looking into. 
 
 This is a rough, ugly and quick code to realize an embedded shell enviorment for embedded systems particualrly for the unibaord. Inspired from Bash shell and as it runs on uniboard, the name uNiBash comes as a logical choice. The capital and small case is for some eye candy. 
@@ -40,6 +42,4 @@ LED1 ON
 user@tty1: if (SENSOR1 >50); LED1 ON; else LED* OFF; 
 user@tty1: 
 
-That is the final goal of uNiBash ! 
-
-
+That is the final goal of uNiBash !
